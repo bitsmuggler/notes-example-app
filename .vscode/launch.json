@@ -7,6 +7,16 @@
         {
             "type": "node",
             "request": "launch",
+            "name": "nodemon",
+            "runtimeExecutable": "nodemon",
+            "program": "${workspaceFolder}/bin/www",
+            "restart": true,
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen"
+        },
+        {
+            "type": "node",
+            "request": "launch",
             "name": "Jest All",
             "program": "${workspaceFolder}/node_modules/.bin/jest",
             "args": ["--runInBand"],

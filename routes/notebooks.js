@@ -1,69 +1,61 @@
 const uuid = require('uuid').v1;
 
-var express = require('express');
-var router = express.Router();
+let express = require('express');
+let router = express.Router();
+
+let NotebookRepository = require('./notebook.repository');
 
 let notebooks = [];
 
 router.get('/', (req, res, next) => {
-  res.send(notebooks.map(n => n.id));
+  let repository = new NotebookRepository();
+
+  repository.getNotebooks().then(notebooks => res.send(notebooks))
+                           .catch(err => console.log(err));
 });
 
 router.post('/', (req, res, next) => {
-  let notebookUuid = uuid();
-  notebooks.push({id: notebookUuid, notes: []});
-  res.send({id: notebookUuid});
+  let repository = new NotebookRepository();
+  repository.createNotebook().then(id => {
+                               res.send({ id: id });
+                              })
+                             .catch(err => { 
+                                console.log(err); 
+                                res.send(500); 
+                              });
 });
 
-router.post('/:bookuid/notes/', (req, res)  => {
-  let message = req.body.note;
-  let bookuid = req.params.bookuid;
-  let noteUid = uuid();
-
-  notebooks.find(notebook => {
-      if(notebook.id === bookuid) {
-        let note = {
-          id: noteUid,
-          message: message
-        }
-
-        notebook.notes.push(note);
-      }
-  });
-
-  res.send({noteId: uuid()});
+router.post('/:bookuid/notes/', (req, res) => {
+  let repository = new NotebookRepository();
+  repository.addNote(req.params.bookuid, req.body.note)
+                         .then(noteId => res.send({ noteId: noteId }))
+                         .catch(res.status(500));
 });
 
 router.get('/:bookuid', (req, res) => {
-    res.send(notebooks.find(n => n.id === req.params.bookuid));
+  let repository = new NotebookRepository();
+  repository.getNotebook(req.params.bookuid).then(result => res.send(result))
+                                            .catch(res.status(404));
 });
 
 router.get('/:bookuid/notes', (req, res) => {
-    let notebook = notebooks.find(n => n.id === req.params.bookuid);
-    if(notebook && notebook.notes) {
-      res.send(notebook.notes);
-    } else {
-      res.sendStatus(404);
-    }
+  let repository = new NotebookRepository();
+  repository.getNotes(req.params.bookuid).then(notes => res.send(notes))
+                                         .catch(res.status(404));
 });
 
 router.delete('/:bookuid/notes/:noteuid', (req, res) => {
-    let bookuid = req.params.bookuid;
-    let noteuid = req.params.noteuid;
-    let notebook = findNotebook(bookuid);
-    
-    if(!notebook) {
-      res.sendStatus(404);
-    }
+  let bookuid = req.params.bookuid;
+  let noteuid = req.params.noteuid;
 
-    let filteredNotes = notebook.notes.filter(n => n.id !== noteuid);
-    notebook.notes = filteredNotes;
+  let repository = new NotebookRepository();
 
-    res.sendStatus(200);
+  repository.deleteNote(bookuid, noteuid).then(result => res.sendStatus(200))
+                                         .catch(() => res.sendStatus(500));
 });
 
 function findNotebook(bookuid) {
-    return notebooks.find(n => n.id === bookuid);
+  return notebooks.find(n => n.id === bookuid);
 }
 
 module.exports = router;

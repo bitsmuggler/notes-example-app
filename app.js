@@ -4,10 +4,14 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 
+require('dotenv').config();
+console.dir(process.env);
 var indexRouter = require('./routes/index');
 var notebooksRouter = require('./routes/notebooks');
 
 var app = express();
+
+process.env.MONGODB_CONNECTIONSTRING = 'mongodb://test-user:test-123@ds261377.mlab.com:61377/notes-example-app';
 
 app.use(logger('dev'));
 app.use(express.json());
