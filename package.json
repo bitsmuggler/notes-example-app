@@ -6,6 +6,7 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "admin-lte": "^3.0.1",
     "body-parser": "^1.19.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
@@ -18,6 +19,11 @@
   "devDependencies": {
     "jest": "^24.8.0",
     "nodemon": "^1.19.1",
-    "supertest": "^4.0.2"
+    "supertest": "^4.0.2",
+    "gulp": "^4.0.2",
+    "gulp-cli": "^2.2.0",
+    "gulp-connect": "^5.7.0",
+    "gulp-connect-proxy": "^0.3.1",
+    "gulp-webserver": "^0.9.1"
   }
 }

@@ -2,6 +2,9 @@ const uuid = require('uuid').v1;
 const mongo = require('mongodb').MongoClient
 const url = process.env.MONGODB_CONNECTIONSTRING;
 
+console.log(`Connection-String: ${url}`);
+
+
 class NotebookRepository {
 
     async getNotebooks() {
@@ -9,14 +12,18 @@ class NotebookRepository {
         let collection = this.getCollection(client);
         let result = await collection.find({});
         let resultAsArray = await result.toArray();
-        return resultAsArray.map(n => n.id);
+        return resultAsArray.map(n => {
+            console.dir(n);
+            return {id: n.id, notes: n.notes.length};
+        });
     }
 
     async createNotebook() {
         const client = await this.getClient();
         let collection = this.getCollection(client);
-
         let notebookUuid = uuid();
+        console.log(`CREATE NEW NOTEBOOK! ${notebookUuid}`);
+      
         let notebook = { id: notebookUuid, notes: [] };
 
         await collection.insertOne(notebook);
@@ -30,7 +37,7 @@ class NotebookRepository {
         return await collection.findOne({id: notebookUuid});
     }
     
-    async addNote(notebookUuid, n) {
+    async addNote(notebookUuid, title, content) {
         const client = await this.getClient();
         let collection = this.getCollection(client);
 
@@ -44,9 +51,12 @@ class NotebookRepository {
 
         let note = {
             id: noteUid,
-            message: n
+            title: title,
+            date: Date.now(),
+            message: content
         }
         notebook.notes.push(note);
+        console.log(`Insert note in notebook ${notebookUuid}`);
         await collection.updateOne({id: notebookUuid}, { $set: {notes: notebook.notes}}, notebook);
 
         return noteUid;

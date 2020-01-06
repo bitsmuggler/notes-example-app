@@ -27,21 +27,19 @@ router.post('/', (req, res, next) => {
 
 router.post('/:bookuid/notes/', (req, res) => {
   let repository = new NotebookRepository();
-  repository.addNote(req.params.bookuid, req.body.note)
+  repository.addNote(req.params.bookuid, req.body.title, req.body.note)
                          .then(noteId => res.send({ noteId: noteId }))
-                         .catch(res.status(500));
+                         .catch(() => res.status(500));
 });
 
 router.get('/:bookuid', (req, res) => {
   let repository = new NotebookRepository();
-  repository.getNotebook(req.params.bookuid).then(result => res.send(result))
-                                            .catch(res.status(404));
+  repository.getNotebook(req.params.bookuid).then(result => res.send(result)).catch(() => res.sendStatus(500));
 });
 
 router.get('/:bookuid/notes', (req, res) => {
   let repository = new NotebookRepository();
-  repository.getNotes(req.params.bookuid).then(notes => res.send(notes))
-                                         .catch(res.status(404));
+  repository.getNotes(req.params.bookuid).then(notes => res.send(notes)).catch(() => res.sendStatus(500));
 });
 
 router.delete('/:bookuid/notes/:noteuid', (req, res) => {

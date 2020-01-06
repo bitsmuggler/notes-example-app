@@ -11,7 +11,7 @@ var notebooksRouter = require('./routes/notebooks');
 
 var app = express();
 
-process.env.MONGODB_CONNECTIONSTRING = 'mongodb://test-user:test-123@ds261377.mlab.com:61377/notes-example-app';
+process.env.MONGODB_CONNECTIONSTRING = 'mongodb://user:test-123@ds261377.mlab.com:61377/notes-example-app';
 
 app.use(logger('dev'));
 app.use(express.json());
