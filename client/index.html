@@ -33,7 +33,6 @@
           </li>
         </ul>
       </div>
-
       <button id="buttonNote" class="btn btn-outline-info my-10 my-sm-0" onclick="createNotebook()">Create notebook</button>
       <button id="buttonNote" class="btn btn-outline-success my-2 my-sm-0" data-toggle="modal" data-target="#addNoteModal" style="margin-left: 5px">Add note</button>
 
@@ -45,6 +44,7 @@
   
     </div>  
   </div>  
+  <status-element></status-element>
 
 <!-- Modal -->
 <div class="modal fade" id="addNoteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -90,7 +90,8 @@
     crossorigin="anonymous"></script>
 
     <script src="./app.js"></script>
-    <script src="./note.component.js"></script> 
+    <script src="./note.component.js"></script>
+    <script src="./status.component.js"></script>
 </body>
 
 </html>
