@@ -2,10 +2,10 @@
 
 ``npm install``
 
-## Frontend
+## Run Frontend
 
 ``npx gulp webserver``
 
-## Backend
+## Run Backend
 
 ``npm run start``
