@@ -4,9 +4,9 @@ _Playground to learn Node.js Basics & REST architecture paradigm_
 
 ## Parts
 
-* Exemplary In-Memory note management as RESTful API (``master-branch``)
-* Persistent note management as RESTful API (``mongodb-branch``)
-* Web UI & RESTful API note management in VanillaJS (``frontend-starter-vanillajs``)
+* Exemplary In-Memory note management as RESTful API (Branch: ``master``)
+* Persistent note management as RESTful API (Branch: ``mongodb``)
+* Web UI & RESTful API note management in VanillaJS (Branch: ``frontend-starter-vanillajs``)
 
 ## Run examples
 
