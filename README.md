@@ -17,7 +17,7 @@ _Playground to learn Node.js Basics & REST architecture paradigm_
 
 1. Create a .env file with the connection string your MongoDB
     * Variable: ``MONGODB_CONNECTIONSTRING``
-1. Install dependencies ``npm install```
+1. Install dependencies ``npm install``
 1. Run server
     * ```npm run server``` or
     * Use nodemon: ``npx nodemon start``
