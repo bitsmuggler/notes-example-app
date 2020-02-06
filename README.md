@@ -27,5 +27,5 @@ _Playground to learn Node.js Basics & REST architecture paradigm_
 _Only on branch: ```frontend-starter-vanillajs```_
 
 1. Make sure your backend is running
-1. Run the frontend webserver via gulp: ```npm run webserver``
+1. Run the frontend webserver via gulp: ``npm run webserver``
 1. Access your frontend via Browser: ```http://localhost:8000```
