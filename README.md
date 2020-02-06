@@ -10,7 +10,7 @@ _Playground to learn Node.js Basics & REST architecture paradigm_
 
 ## Prerequisites
 
-1. Create a MongoDB Database with the name ``notes-example-app```
+1. Create a MongoDB Database with the name ``notes-example-app``
 1. Create a collection in the db with the name ``notebooks``
 
 ### Running Node.js Backend
