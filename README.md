@@ -8,7 +8,10 @@ _Playground to learn Node.js Basics & REST architecture paradigm_
 * Persistent note management as RESTful API (Branch: ``mongodb``)
 * Web UI & RESTful API note management in VanillaJS (Branch: ``frontend-starter-vanillajs``)
 
-## Run examples
+## Prerequisites
+
+1. Create a MongoDB Database with the name ``notes-example-app```
+1. Create a collection in the db with the name ``notebooks``
 
 ### Running Node.js Backend
 
