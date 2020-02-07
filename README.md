@@ -19,7 +19,7 @@ _Playground to learn Node.js Basics & REST architecture paradigm_
     * Variable: ``MONGODB_CONNECTIONSTRING``
 1. Install dependencies ``npm install``
 1. Run server
-    * ```npm run server``` or
+    * ```npm run start``` or
     * Use nodemon: ``npx nodemon start``
 1. Access your API via: ```http://localhost:3000```
 
@@ -27,5 +27,5 @@ _Playground to learn Node.js Basics & REST architecture paradigm_
 _Only on branch: ```frontend-starter-vanillajs```_
 
 1. Make sure your backend is running
-1. Run the frontend webserver via gulp: ``npm run webserver``
+1. Run the frontend webserver via gulp: ``npx gulp webserver``
 1. Access your frontend via Browser: ```http://localhost:8000```
